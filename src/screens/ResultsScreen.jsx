@@ -11,24 +11,6 @@ import { useAuthStore } from '../store/authStore.js';
 const COLORS = { red: '#f87171', blue: '#60a5fa', green: '#4ade80', yellow: '#fbbf24' };
 const EMOJIS = ['🥇', '🥈', '🥉', '4️⃣'];
 
-function ConfettiPiece({ delay }) {
-    const colors = ['#f97316', '#fbbf24', '#f472b6', '#60a5fa', '#4ade80'];
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    const x = Math.random() * 100;
-    return (
-        <motion.div
-            className="absolute w-3 h-3 rounded-sm"
-            style={{ left: `${x}%`, top: '-5%', backgroundColor: color }}
-            animate={{
-                y: ['0vh', '110vh'],
-                rotate: [0, 720 * (Math.random() > 0.5 ? 1 : -1)],
-                x: [(0), (Math.random() - 0.5) * 200],
-            }}
-            transition={{ duration: 3 + Math.random() * 2, delay, ease: 'linear', repeat: Infinity, repeatDelay: Math.random() * 3 }}
-        />
-    );
-}
-
 export default function ResultsScreen() {
     const { gameOverData, gameStartPlayers, mySocketId, roomState, resetGame, setScreen, resetAll } = useGameStore();
     const { user } = useAuthStore();
@@ -70,9 +52,6 @@ export default function ResultsScreen() {
     return (
         <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden"
             style={{ background: 'radial-gradient(ellipse at top, #1a0000 0%, #0a0a0f 60%)' }}>
-
-            {/* Confetti */}
-            {[...Array(30)].map((_, i) => <ConfettiPiece key={i} delay={i * 0.15} />)}
 
             {/* Winner announcement */}
             <motion.div
@@ -159,17 +138,17 @@ export default function ResultsScreen() {
                     {isHost ? (
                         <button onClick={handlePlayAgain}
                             className="btn-neon bg-orange-500 border-orange-400 text-white px-8 py-3">
-                            🔄 Play Again
+                            Play Again
                         </button>
                     ) : (
                         <button onClick={() => resetGame()}
                             className="btn-neon bg-orange-500 border-orange-400 text-white px-8 py-3">
-                            🏟️ Go to Lobby
+                            Go to Lobby
                         </button>
                     )}
                     <button onClick={handleMainMenu}
                         className="btn-neon bg-transparent border-slate-600 text-slate-400 px-8 py-3">
-                        🏠 Main Menu
+                        Main Menu
                     </button>
                 </motion.div>
             )}

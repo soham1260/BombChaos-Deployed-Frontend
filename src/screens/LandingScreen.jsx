@@ -53,18 +53,8 @@ export default function LandingScreen() {
     }
 
     return (
-        <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden scanlines"
+        <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden"
             style={{ background: 'radial-gradient(ellipse at center, #1a0a00 0%, #0a0a0f 70%)' }}>
-
-            {/* Floating ember particles */}
-            {[...Array(16)].map((_, i) => (
-                <motion.div key={i}
-                    className="absolute w-1 h-1 rounded-full bg-orange-400 opacity-70"
-                    style={{ left: `${Math.random() * 100}%`, bottom: 0 }}
-                    animate={{ y: [0, -(300 + Math.random() * 400)], opacity: [0.7, 0], x: [0, (Math.random() - 0.5) * 80] }}
-                    transition={{ duration: 3 + Math.random() * 4, repeat: Infinity, delay: Math.random() * 5, ease: 'linear' }}
-                />
-            ))}
 
             {/* Music toggle — top left */}
             <div className="absolute top-4 left-4 z-10">
@@ -153,14 +143,14 @@ export default function LandingScreen() {
                                 onClick={handleCreate}
                                 className="btn-neon flex-1 bg-orange-500 border-orange-400 text-white"
                             >
-                                {loading ? '...' : '🏠 CREATE ROOM'}
+                                {loading ? '...' : 'CREATE ROOM'}
                             </button>
                             <button
                                 id="join-room-btn"
                                 onClick={() => { setMode('join'); setError(''); }}
                                 className="btn-neon flex-1 bg-transparent border-sky-400 text-sky-400"
                             >
-                                🔗 JOIN ROOM
+                                JOIN ROOM
                             </button>
                         </>
                     ) : (
@@ -174,7 +164,7 @@ export default function LandingScreen() {
                                 onClick={handleJoin}
                                 className="btn-neon flex-1 bg-sky-500 border-sky-400 text-white"
                             >
-                                {loading ? '...' : '🔗 JOIN ROOM'}
+                                {loading ? '...' : 'JOIN ROOM'}
                             </button>
                         </>
                     )}
@@ -183,7 +173,7 @@ export default function LandingScreen() {
 
             {/* Footer */}
             <p className="absolute bottom-4 text-slate-600 text-xs">
-                2–4 players · WASD / Arrow Keys · SPACE to place bomb
+                2-4 players · WASD / Arrow Keys · SPACE to place bomb
             </p>
         </div>
     );
