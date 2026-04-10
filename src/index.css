@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body, #root {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    background: #0a0a0f;
+    color: #f1f5f9;
+    font-family: 'Outfit', sans-serif;
+    overflow: hidden;
+  }
+}
+
+/* Glow pulse animation for landing title */
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow: 0 0 10px #f97316, 0 0 20px #f97316, 0 0 40px #f97316;
+  }
+  50% {
+    text-shadow: 0 0 30px #f97316, 0 0 60px #fb923c, 0 0 100px #fbbf24, 0 0 150px #fbbf24;
+  }
+}
+/* Fix Chrome autofill white background */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.05) inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+.glow-title {
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+/* Scanline overlay */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px, transparent 3px,
+    rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px
+  );
+  pointer-events: none;
+}
+
+/* Bomb SVG animation */
+@keyframes bombFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-16px) rotate(5deg); }
+}
+.bomb-float { animation: bombFloat 3s ease-in-out infinite; }
+
+/* Ember particles */
+@keyframes ember {
+  0% { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--ex), var(--ey)) scale(0.3); }
+}
+
+/* Neon button */
+.btn-neon {
+  @apply relative px-6 py-3 font-bold text-lg rounded-lg transition-all duration-200;
+  @apply border-2 outline-none cursor-pointer select-none;
+}
+.btn-neon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px currentColor;
+}
+.btn-neon:active { transform: translateY(0); }
+
+/* Glass card */
+.glass {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Input field */
+.input-game {
+  @apply w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white
+         placeholder-white/40 outline-none transition-all duration-200;
+}
+.input-game:focus {
+  @apply border-orange-500;
+  box-shadow: 0 0 0 3px rgba(249,115,22,0.2);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(249,115,22,0.5); border-radius: 2px; }
